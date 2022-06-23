@@ -1,22 +1,28 @@
 import 'package:hawk/hawk.dart';
 
 class MessageHubImpl implements MessageHub {
-  MessageHubImpl.withHandlerCollection({
-    required this.handlers,
+  MessageHubImpl.withBehaviourStore({
+    required this.behaviours,
   });
 
   factory MessageHubImpl() {
-    return MessageHubImpl.withHandlerCollection(
-      handlers: HandlerCollectionImpl(),
+    return MessageHubImpl.withBehaviourStore(
+      behaviours: BehaviourStoreImpl(),
     );
   }
 
   @override
-  final HandlerCollection handlers;
+  final BehaviourStore behaviours;
 
   @override
-  Future<void> send<T>(T message) async {
-    final executions = handlers.get<T>().map((h) async => await h(message));
-    Future.wait(executions);
+  void send<T>(T message) async {
+    behaviours.get<T>().map((behaviour) async => await behaviour(message));
+  }
+
+  @override
+  Future<ExceptionOr<TResponse>> sendAndWaitForResponse<TMessage, TResponse>(
+    TMessage message,
+  ) {
+    return behaviours.getWithResponse<TMessage, TResponse>()(message);
   }
 }

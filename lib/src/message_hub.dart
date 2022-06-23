@@ -1,7 +1,11 @@
-import 'package:hawk/src/handler_collection/handler_collection.dart';
+import 'package:hawk/hawk.dart';
 
 abstract class MessageHub {
-  HandlerCollection get handlers;
+  BehaviourStore get behaviours;
 
-  Future<void> send<T>(T message);
+  void send<T>(T message);
+
+  Future<ExceptionOr<TResponse>> sendAndWaitForResponse<TMessage, TResponse>(
+    TMessage message,
+  );
 }
