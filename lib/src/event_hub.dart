@@ -1,5 +1,4 @@
 import 'package:hawk/hawk.dart';
-import 'package:hawk/src/event_hub_impl.dart';
 
 EventHub? _instance;
 
