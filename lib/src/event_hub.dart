@@ -4,7 +4,7 @@ import 'package:hawk/src/event_hub_impl.dart';
 EventHub? _instance;
 
 abstract class EventHub {
-  factory EventHub.instance() => _instance ?? (_instance = EventHubImpl());
+  static EventHub get instance => _instance ?? (_instance = EventHubImpl());
 
   HandlerStore get handlers;
 
