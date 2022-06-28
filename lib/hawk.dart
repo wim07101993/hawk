@@ -1,7 +1,6 @@
 library hawk;
 
-export 'package:behaviour/behaviour.dart';
-export 'package:hawk/src/behaviour_factory.dart';
-export 'package:hawk/src/behaviour_store/behaviour_store.dart';
-export 'package:hawk/src/behaviour_store/behaviour_store_impl.dart';
-export 'package:hawk/src/message_hub.dart';
+export 'package:hawk/src/event_hub.dart';
+export 'package:hawk/src/handler.dart';
+export 'package:hawk/src/handler_store/handler_store.dart';
+export 'package:hawk/src/handler_store/handler_store_impl.dart';
